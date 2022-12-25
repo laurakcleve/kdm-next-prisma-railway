@@ -1,10 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
-import styles from '../styles/Home.module.css'
 
-function Home() {
+function Home({ settlementLocations }) {
   return (
     <div className="container">
       <Head>
@@ -14,6 +11,11 @@ function Home() {
 
       <main>
         <h1>Settlement Locations</h1>
+        <ul>
+          {settlementLocations.map((location) => (
+            <li key={location.id}>{location.name}</li>
+          ))}
+        </ul>
       </main>
     </div>
   )
@@ -24,7 +26,7 @@ export async function getStaticProps() {
   const settlementLocations = await prisma.settlementLocation.findMany()
 
   return {
-    props: settlementLocations,
+    props: { settlementLocations },
   }
 }
 
