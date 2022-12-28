@@ -20,6 +20,13 @@ function Home({ settlementLocations }) {
                   <li key={g.id}>
                     <p>{g.name}</p>
                     <ul>
+                      {g.affinities.map((affinity) => (
+                        <li
+                          key={`${affinity.side}${affinity.color}`}
+                        >{`${affinity.side} - ${affinity.color}`}</li>
+                      ))}
+                    </ul>
+                    <ul>
                       {g.gearKeywords.map((keyword) => (
                         <li key={keyword.id}>{keyword.name}</li>
                       ))}
@@ -42,6 +49,7 @@ export async function getStaticProps() {
       gear: {
         include: {
           gearKeywords: true,
+          affinities: true,
         },
       },
     },

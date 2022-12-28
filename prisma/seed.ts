@@ -5,6 +5,7 @@ const prisma = new PrismaClient()
 
 async function main() {
   await prisma.settlementLocation.deleteMany()
+  await prisma.gearAffinity.deleteMany()
   await prisma.gear.deleteMany()
   await prisma.gearKeyword.deleteMany()
 

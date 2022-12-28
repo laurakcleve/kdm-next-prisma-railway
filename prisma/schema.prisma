@@ -22,10 +22,32 @@ model Gear {
   gearKeywords         GearKeyword[]
   settlementLocation   SettlementLocation? @relation(fields: [settlementLocationId], references: [id])
   settlementLocationId Int?
+  affinities           GearAffinity[]
 }
 
 model GearKeyword {
   id   Int    @id @default(autoincrement())
   name String @unique
   gear Gear[]
+}
+
+model GearAffinity {
+  id     Int   @id @default(autoincrement())
+  gear   Gear  @relation(fields: [gearId], references: [id])
+  gearId Int
+  side   Side
+  color  Color
+}
+
+enum Side {
+  TOP
+  RIGHT
+  BOTTOM
+  LEFT
+}
+
+enum Color {
+  RED
+  GREEN
+  BLUE
 }
