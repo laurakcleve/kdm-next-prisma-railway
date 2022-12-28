@@ -1,14 +1,29 @@
 import { PrismaClient } from '@prisma/client'
-import { SETTLEMENT_LOCATIONS } from './data'
+import { settlementLocationsData, gearKeywordsData } from './data'
 
 const prisma = new PrismaClient()
 
 async function main() {
   await prisma.settlementLocation.deleteMany()
+  await prisma.gear.deleteMany()
+  await prisma.gearKeyword.deleteMany()
 
-  await prisma.settlementLocation.createMany({
-    data: SETTLEMENT_LOCATIONS.map((location) => ({ name: location })),
+  await prisma.gearKeyword.createMany({
+    data: gearKeywordsData,
   })
+
+  // await prisma.settlementLocation.createMany({
+  //   data: settlementLocationsData,
+  // })
+
+  // You cannot nest `create` inside a top-level `createMany`
+
+  for (const l of settlementLocationsData) {
+    const location = await prisma.settlementLocation.create({
+      data: l,
+    })
+    console.log(`Created location with id: ${location.id}`)
+  }
 }
 
 main()

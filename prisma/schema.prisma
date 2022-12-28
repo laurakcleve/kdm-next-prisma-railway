@@ -13,4 +13,19 @@ generator client {
 model SettlementLocation {
   id   Int    @id @default(autoincrement())
   name String @unique
+  gear Gear[]
+}
+
+model Gear {
+  id                   Int                 @id @default(autoincrement())
+  name                 String              @unique
+  gearKeywords         GearKeyword[]
+  settlementLocation   SettlementLocation? @relation(fields: [settlementLocationId], references: [id])
+  settlementLocationId Int?
+}
+
+model GearKeyword {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  gear Gear[]
 }

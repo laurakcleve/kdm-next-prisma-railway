@@ -13,7 +13,21 @@ function Home({ settlementLocations }) {
         <h1>Settlement Locations</h1>
         <ul>
           {settlementLocations.map((location) => (
-            <li key={location.id}>{location.name}</li>
+            <li key={location.id}>
+              <p>{location.name}</p>
+              <ul>
+                {location.gear.map((g) => (
+                  <li key={g.id}>
+                    <p>{g.name}</p>
+                    <ul>
+                      {g.gearKeywords.map((keyword) => (
+                        <li key={keyword.id}>{keyword.name}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </li>
           ))}
         </ul>
       </main>
@@ -23,7 +37,15 @@ function Home({ settlementLocations }) {
 
 export async function getStaticProps() {
   const prisma = new PrismaClient()
-  const settlementLocations = await prisma.settlementLocation.findMany()
+  const settlementLocations = await prisma.settlementLocation.findMany({
+    include: {
+      gear: {
+        include: {
+          gearKeywords: true,
+        },
+      },
+    },
+  })
 
   return {
     props: { settlementLocations },
