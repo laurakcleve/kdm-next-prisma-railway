@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300&display=swap');
 
 :root {
   --red: #c74747;
@@ -25,6 +25,10 @@ body {
 h1,
 h2 {
   font-weight: 300;
+}
+
+h1 {
+  margin-bottom: 36px;
 }
 
 .container {
@@ -59,6 +63,7 @@ h2 {
 .gear-item p.keywords {
   font-style: italic;
   font-size: 14px;
+  font-weight: 200;
   margin-top: 3px;
   opacity: 50%;
 }
