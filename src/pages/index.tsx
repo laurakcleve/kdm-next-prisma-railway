@@ -19,6 +19,7 @@ function Home({ settlementLocations }) {
                 <div className="affinity-box">
                   {g.affinities.map((affinity) => (
                     <div
+                      key={`${affinity.side}${affinity.color}`}
                       className={`affinity-${affinity.side.toLowerCase()} affinity-${affinity.color.toLowerCase()}`}
                     />
                   ))}
