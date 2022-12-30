@@ -11,32 +11,32 @@ function Home({ settlementLocations }) {
 
       <main>
         <h1>Settlement Locations</h1>
-        <ul>
-          {settlementLocations.map((location) => (
-            <li key={location.id}>
-              <p>{location.name}</p>
-              <ul>
-                {location.gear.map((g) => (
-                  <li key={g.id}>
-                    <p>{g.name}</p>
-                    <ul>
-                      {g.affinities.map((affinity) => (
-                        <li
-                          key={`${affinity.side}${affinity.color}`}
-                        >{`${affinity.side} - ${affinity.color}`}</li>
-                      ))}
-                    </ul>
-                    <ul>
-                      {g.gearKeywords.map((keyword) => (
-                        <li key={keyword.id}>{keyword.name}</li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+        {settlementLocations.map((location) => (
+          <div className="location">
+            <h2>{location.name}</h2>
+            {location.gear.map((g) => (
+              <div className="gear-item">
+                <div className="affinity-box">
+                  {g.affinities.map((affinity) => (
+                    <div
+                      className={`affinity-${affinity.side.toLowerCase()} affinity-${affinity.color.toLowerCase()}`}
+                    />
+                  ))}
+                </div>
+                <div className="content">
+                  {g.name}
+                  <p className="keywords">
+                    {g.gearKeywords.map((keyword, index) =>
+                      index < g.gearKeywords.length - 1
+                        ? keyword.name + ', '
+                        : keyword.name,
+                    )}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
       </main>
     </div>
   )

@@ -1,26 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
 :root {
-  --primary: #c049ff;
+  --red: #c74747;
+  --green: #5ab976;
+  --blue: #5a7eb9;
+  --affinity-height: 8px;
+  --affinity-width: 14px;
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-a:hover,
-a:focus,
-a:active {
-  text-decoration: underline;
+  background-color: #1b1a20;
+  color: #ffffff;
+  font-family: Outfit, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.location {
+  margin-bottom: 36px;
+}
+
+.gear-item {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.gear-item .affinity-box {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #2b2d34;
+  border-radius: 8px;
+}
+
+.gear-item .content {
+  padding: 0 16px;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.gear-item p.keywords {
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 3px;
+  opacity: 50%;
+}
+
+.affinity-red {
+  background-color: var(--red);
+}
+
+.affinity-blue {
+  background-color: var(--blue);
+}
+
+.affinity-green {
+  background-color: var(--green);
+}
+
+.affinity-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--affinity-width);
+  height: var(--affinity-height);
+}
+
+.affinity-left {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: var(--affinity-height);
+  height: var(--affinity-width);
+}
+
+.affinity-right {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: var(--affinity-height);
+  height: var(--affinity-width);
+}
+
+.affinity-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--affinity-width);
+  height: var(--affinity-height);
+  background-color: var(--red);
 }
