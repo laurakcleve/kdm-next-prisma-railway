@@ -10,7 +10,7 @@ function Home({ settlementLocations }) {
       </Head>
 
       <main>
-        <h1>Settlement Locations</h1>
+        <h1>Settlement Shops</h1>
         {settlementLocations.map((location) => (
           <div className="location">
             <h2>{location.name}</h2>

@@ -2,7 +2,7 @@ import { Side, Color } from '@prisma/client'
 
 export const settlementLocationsData = [
   {
-    name: 'Bone Smith',
+    name: 'Bone Workshop',
     gear: {
       create: [
         {
@@ -42,23 +42,37 @@ export const settlementLocationsData = [
             ],
           },
         },
+        {
+          name: 'Skull Helmet',
+          gearKeywords: {
+            connect: [{ name: 'armor' }, { name: 'bone' }, { name: 'fragile' }],
+          },
+          affinities: {
+            create: [
+              {
+                side: Side.BOTTOM,
+                color: Color.RED,
+              },
+            ],
+          },
+        },
       ],
     },
   },
   {
-    name: 'Skinnery',
+    name: 'Hide Workshop',
     gear: {
       create: [
         {
-          name: 'Rawhide Boots',
+          name: 'Hide Boots',
           gearKeywords: {
-            connect: [{ name: 'armor' }, { name: 'set' }, { name: 'rawhide' }],
+            connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
           },
         },
         {
-          name: 'Rawhide Drum',
+          name: 'Hide Drum',
           gearKeywords: {
-            connect: { name: 'rawhide' },
+            connect: [{ name: 'hide' }, { name: 'noisy' }, { name: 'item' }],
           },
           affinities: {
             create: [
@@ -70,9 +84,70 @@ export const settlementLocationsData = [
           },
         },
         {
-          name: 'Rawhide Vest',
+          name: 'Hide Vest',
           gearKeywords: {
-            connect: [{ name: 'armor' }, { name: 'set' }, { name: 'rawhide' }],
+            connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
+          },
+          affinities: {
+            create: [
+              {
+                side: Side.TOP,
+                color: Color.BLUE,
+              },
+              {
+                side: Side.RIGHT,
+                color: Color.RED,
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+  {
+    name: 'Apothecary',
+    gear: {
+      create: [
+        {
+          name: 'Stinking Salve',
+          gearKeywords: {
+            connect: [{ name: 'item' }, { name: 'balm' }, { name: 'stinky' }],
+          },
+          affinities: {
+            create: [
+              {
+                side: Side.LEFT,
+                color: Color.BLUE,
+              },
+            ],
+          },
+        },
+        {
+          name: 'Beast Grease',
+          gearKeywords: {
+            connect: [
+              { name: 'item' },
+              { name: 'consumable' },
+              { name: 'stinky' },
+            ],
+          },
+          affinities: {
+            create: [
+              {
+                side: Side.LEFT,
+                color: Color.GREEN,
+              },
+            ],
+          },
+        },
+        {
+          name: 'Dried Astrantia',
+          gearKeywords: {
+            connect: [
+              { name: 'item' },
+              { name: 'herb' },
+              { name: 'consumable' },
+            ],
           },
           affinities: {
             create: [
@@ -99,5 +174,12 @@ export const gearKeywordsData = [
   { name: 'bone' },
   { name: 'armor' },
   { name: 'set' },
-  { name: 'rawhide' },
+  { name: 'hide' },
+  { name: 'fragile' },
+  { name: 'item' },
+  { name: 'herb' },
+  { name: 'consumable' },
+  { name: 'noisy' },
+  { name: 'balm' },
+  { name: 'stinky' },
 ]
