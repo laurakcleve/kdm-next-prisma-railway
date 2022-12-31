@@ -12,10 +12,10 @@ function Home({ settlementLocations }) {
       <main>
         <h1>Settlement Shops</h1>
         {settlementLocations.map((location) => (
-          <div className="location">
+          <div className="location" key={location.id}>
             <h2>{location.name}</h2>
             {location.gear.map((g) => (
-              <div className="gear-item">
+              <div className="gear-item" key={g.id}>
                 <div className="affinity-box">
                   {g.affinities.map((affinity) => (
                     <div
@@ -27,11 +27,13 @@ function Home({ settlementLocations }) {
                 <div className="content">
                   {g.name}
                   <p className="keywords">
-                    {g.gearKeywords.map((keyword, index) =>
-                      index < g.gearKeywords.length - 1
-                        ? keyword.name + ', '
-                        : keyword.name,
-                    )}
+                    {g.gearKeywords.map((keyword, index) => (
+                      <span key={keyword.id}>
+                        {index < g.gearKeywords.length - 1
+                          ? keyword.name + ', '
+                          : keyword.name}
+                      </span>
+                    ))}
                   </p>
                 </div>
               </div>
