@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 function Home({ settlementLocations }) {
   return (
-    <div className="container">
+    <>
       <Head>
         <title>KDM Shop</title>
         <link rel="icon" href="/favicon.ico" />
@@ -11,12 +11,12 @@ function Home({ settlementLocations }) {
 
       <main>
         <h1>Settlement Shops</h1>
-        <div className="location-wrapper">
-          {settlementLocations.map((location) => (
-            <div className="location" key={location.id}>
-              <h2>{location.name}</h2>
-              {location.gear.map((g) => (
-                <div className="gear-item" key={g.id}>
+        {settlementLocations.map((location) => (
+          <div className="location" key={location.id}>
+            <h2>{location.name}</h2>
+            {location.gear.map((g) => (
+              <div className="gear-item" key={g.id}>
+                <div className="affinity-wrapper">
                   <div className="affinity-box">
                     {g.affinities.map((affinity) => (
                       <div
@@ -26,25 +26,37 @@ function Home({ settlementLocations }) {
                       />
                     ))}
                   </div>
-                  <div className="content">
-                    {g.name}
-                    <p className="keywords">
-                      {g.gearKeywords.map((keyword, index) => (
-                        <span key={keyword.id}>
-                          {index < g.gearKeywords.length - 1
-                            ? keyword.name + ', '
-                            : keyword.name}
-                        </span>
-                      ))}
-                    </p>
-                  </div>
                 </div>
-              ))}
-            </div>
-          ))}
-        </div>
+                <div className="content">
+                  {g.name}
+                  <p className="keywords">
+                    {g.gearKeywords.map((keyword, index) => (
+                      <span key={keyword.id}>
+                        {index < g.gearKeywords.length - 1
+                          ? keyword.name + ', '
+                          : keyword.name}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+                <ul className="resources">
+                  {g.resources?.map((resource) => (
+                    <li key={resource.id}>
+                      {resource.quantity}x {resource.resource.name}
+                    </li>
+                  ))}
+                  {g.resourceKeywords?.map((keyword) => (
+                    <li key={keyword.id}>
+                      {keyword.quantity}x {keyword.resourceKeyword.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))}
       </main>
-    </div>
+    </>
   )
 }
 
@@ -56,6 +68,16 @@ export async function getStaticProps() {
         include: {
           gearKeywords: true,
           affinities: true,
+          resources: {
+            include: {
+              resource: true,
+            },
+          },
+          resourceKeywords: {
+            include: {
+              resourceKeyword: true,
+            },
+          },
         },
       },
     },

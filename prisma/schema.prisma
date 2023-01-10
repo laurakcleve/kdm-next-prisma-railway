@@ -17,12 +17,14 @@ model SettlementLocation {
 }
 
 model Gear {
-  id                   Int                 @id @default(autoincrement())
-  name                 String              @unique
+  id                   Int                       @id @default(autoincrement())
+  name                 String                    @unique
   gearKeywords         GearKeyword[]
-  settlementLocation   SettlementLocation? @relation(fields: [settlementLocationId], references: [id])
+  settlementLocation   SettlementLocation?       @relation(fields: [settlementLocationId], references: [id], onDelete: Cascade)
   settlementLocationId Int?
   affinities           GearAffinity[]
+  resources            GearUsesResource[]
+  resourceKeywords     GearUsesResourceKeyword[]
 }
 
 model GearKeyword {
@@ -33,7 +35,7 @@ model GearKeyword {
 
 model GearAffinity {
   id     Int   @id @default(autoincrement())
-  gear   Gear  @relation(fields: [gearId], references: [id])
+  gear   Gear  @relation(fields: [gearId], references: [id], onDelete: Cascade)
   gearId Int
   side   Side
   color  Color
@@ -50,4 +52,38 @@ enum Color {
   RED
   GREEN
   BLUE
+}
+
+model GearUsesResource {
+  gear       Gear     @relation(fields: [gearId], references: [id], onDelete: Cascade)
+  gearId     Int
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  resourceId Int
+  quantity   Int      @default(1)
+
+  @@id([gearId, resourceId])
+}
+
+model GearUsesResourceKeyword {
+  gear              Gear            @relation(fields: [gearId], references: [id], onDelete: Cascade)
+  gearId            Int
+  resourceKeyword   ResourceKeyword @relation(fields: [resourceKeywordId], references: [id], onDelete: Cascade)
+  resourceKeywordId Int
+  quantity          Int             @default(1)
+
+  @@id([gearId, resourceKeywordId])
+}
+
+model Resource {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  resourceKeywords ResourceKeyword[]
+  gear             GearUsesResource[]
+}
+
+model ResourceKeyword {
+  id        Int                       @id @default(autoincrement())
+  name      String                    @unique
+  resources Resource[]
+  gear      GearUsesResourceKeyword[]
 }

@@ -1,6 +1,6 @@
-import { Side, Color } from '@prisma/client'
+import { Side, Color, Prisma } from '@prisma/client'
 
-export const settlementLocationsData = [
+export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
   {
     name: 'Bone Workshop',
     gear: {
@@ -16,10 +16,23 @@ export const settlementLocationsData = [
             ],
           },
           affinities: {
+            create: {
+              side: Side.LEFT,
+              color: Color.RED,
+            },
+          },
+          resourceKeywords: {
             create: [
               {
-                side: Side.LEFT,
-                color: Color.RED,
+                resourceKeyword: {
+                  connect: { name: 'bone' },
+                },
+                quantity: 2,
+              },
+              {
+                resourceKeyword: {
+                  connect: { name: 'organ' },
+                },
               },
             ],
           },
@@ -41,6 +54,14 @@ export const settlementLocationsData = [
               },
             ],
           },
+          resourceKeywords: {
+            create: {
+              resourceKeyword: {
+                connect: { name: 'bone' },
+              },
+              quantity: 3,
+            },
+          },
         },
         {
           name: 'Skull Helmet',
@@ -48,12 +69,17 @@ export const settlementLocationsData = [
             connect: [{ name: 'armor' }, { name: 'bone' }, { name: 'fragile' }],
           },
           affinities: {
-            create: [
-              {
-                side: Side.BOTTOM,
-                color: Color.RED,
+            create: {
+              side: Side.BOTTOM,
+              color: Color.RED,
+            },
+          },
+          resources: {
+            create: {
+              resource: {
+                connect: { name: 'Skull' },
               },
-            ],
+            },
           },
         },
       ],
@@ -68,6 +94,13 @@ export const settlementLocationsData = [
           gearKeywords: {
             connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
           },
+          resourceKeywords: {
+            create: {
+              resourceKeyword: {
+                connect: { name: 'hide' },
+              },
+            },
+          },
         },
         {
           name: 'Hide Drum',
@@ -75,10 +108,22 @@ export const settlementLocationsData = [
             connect: [{ name: 'hide' }, { name: 'noisy' }, { name: 'item' }],
           },
           affinities: {
+            create: {
+              side: Side.LEFT,
+              color: Color.GREEN,
+            },
+          },
+          resourceKeywords: {
             create: [
               {
-                side: Side.LEFT,
-                color: Color.GREEN,
+                resourceKeyword: {
+                  connect: { name: 'bone' },
+                },
+              },
+              {
+                resourceKeyword: {
+                  connect: { name: 'hide' },
+                },
               },
             ],
           },
@@ -100,6 +145,13 @@ export const settlementLocationsData = [
               },
             ],
           },
+          resourceKeywords: {
+            create: {
+              resourceKeyword: {
+                connect: { name: 'hide' },
+              },
+            },
+          },
         },
       ],
     },
@@ -109,17 +161,24 @@ export const settlementLocationsData = [
     gear: {
       create: [
         {
-          name: 'Stinking Salve',
+          name: 'Cat Eye Crown',
           gearKeywords: {
-            connect: [{ name: 'item' }, { name: 'balm' }, { name: 'stinky' }],
+            connect: [{ name: 'item' }, { name: 'jewelry' }],
           },
           affinities: {
-            create: [
-              {
-                side: Side.LEFT,
-                color: Color.BLUE,
+            create: {
+              side: Side.LEFT,
+              color: Color.BLUE,
+            },
+          },
+          resources: {
+            create: {
+              resource: {
+                connect: {
+                  name: "Cat's Eye",
+                },
               },
-            ],
+            },
           },
         },
         {
@@ -132,12 +191,17 @@ export const settlementLocationsData = [
             ],
           },
           affinities: {
-            create: [
-              {
-                side: Side.LEFT,
-                color: Color.GREEN,
+            create: {
+              side: Side.LEFT,
+              color: Color.GREEN,
+            },
+          },
+          resourceKeywords: {
+            create: {
+              resourceKeyword: {
+                connect: { name: 'organ' },
               },
-            ],
+            },
           },
         },
         {
@@ -161,13 +225,22 @@ export const settlementLocationsData = [
               },
             ],
           },
+          resources: {
+            create: {
+              resource: {
+                connect: {
+                  name: 'Fresh Astrantia',
+                },
+              },
+            },
+          },
         },
       ],
     },
   },
 ]
 
-export const gearKeywordsData = [
+export const gearKeywordsData: Prisma.GearKeywordCreateManyInput[] = [
   { name: 'weapon' },
   { name: 'melee' },
   { name: 'axe' },
@@ -182,4 +255,55 @@ export const gearKeywordsData = [
   { name: 'noisy' },
   { name: 'balm' },
   { name: 'stinky' },
+  { name: 'jewelry' },
+]
+
+export const resourceKeywordsData: Prisma.ResourceKeywordCreateManyInput[] = [
+  { name: 'hide' },
+  { name: 'bone' },
+  { name: 'organ' },
+  { name: 'herb' },
+]
+
+export const resourcesData: Prisma.ResourceCreateInput[] = [
+  {
+    name: 'Beast Bone',
+    resourceKeywords: {
+      connect: {
+        name: 'bone',
+      },
+    },
+  },
+  {
+    name: 'Beast Hide',
+    resourceKeywords: {
+      connect: {
+        name: 'hide',
+      },
+    },
+  },
+  {
+    name: "Cat's Eye",
+    resourceKeywords: {
+      connect: {
+        name: 'organ',
+      },
+    },
+  },
+  {
+    name: 'Skull',
+    resourceKeywords: {
+      connect: {
+        name: 'bone',
+      },
+    },
+  },
+  {
+    name: 'Fresh Astrantia',
+    resourceKeywords: {
+      connect: {
+        name: 'herb',
+      },
+    },
+  },
 ]
