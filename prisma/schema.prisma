@@ -25,6 +25,7 @@ model Gear {
   affinities           GearAffinity[]
   resources            GearUsesResource[]
   resourceKeywords     GearUsesResourceKeyword[]
+  armorPoints          Int?
 }
 
 model GearKeyword {

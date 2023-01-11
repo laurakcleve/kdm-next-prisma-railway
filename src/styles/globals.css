@@ -9,6 +9,7 @@
 
   --resource-text: #d3b384;
   --border-color: #292832;
+  --shield-icon-color: #403e48;
 }
 
 html,
@@ -92,6 +93,23 @@ main {
 
 .gear-item .resources li {
   margin-bottom: 5px;
+}
+
+.armor-weapon-details {
+  width: 40px;
+  fill: var(--shield-icon-color);
+  position: relative;
+  text-align: center;
+}
+
+.armor-weapon-details svg {
+  width: 28px;
+}
+
+.armor-points {
+  position: absolute;
+  top: 8px;
+  left: 17px;
 }
 
 .affinity-red {

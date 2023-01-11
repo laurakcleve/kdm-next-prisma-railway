@@ -81,6 +81,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
+          armorPoints: 3,
         },
       ],
     },
@@ -101,6 +102,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
+          armorPoints: 1,
         },
         {
           name: 'Hide Drum',
@@ -152,6 +154,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
+          armorPoints: 1,
         },
       ],
     },

@@ -21,10 +21,9 @@ async function main() {
   })
 
   for (const r of resourcesData) {
-    const resource = await prisma.resource.create({
+    await prisma.resource.create({
       data: r,
     })
-    console.log(`Created resource ${resource.name}`)
   }
 
   await prisma.gearKeyword.createMany({
@@ -32,10 +31,9 @@ async function main() {
   })
 
   for (const l of settlementLocationsData) {
-    const location = await prisma.settlementLocation.create({
+    await prisma.settlementLocation.create({
       data: l,
     })
-    console.log(`Created location with id: ${location.id}`)
   }
 }
 

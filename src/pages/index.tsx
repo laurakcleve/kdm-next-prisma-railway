@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import Head from 'next/head'
+import ShieldIcon from '../components/ShieldIcon'
 
 function Home({ settlementLocations }) {
   return (
@@ -27,6 +28,12 @@ function Home({ settlementLocations }) {
                     ))}
                   </div>
                 </div>
+
+                <div className="armor-weapon-details">
+                  {g.armorPoints && <ShieldIcon />}
+                  <div className="armor-points">{g.armorPoints}</div>
+                </div>
+
                 <div className="content">
                   {g.name}
                   <p className="keywords">
