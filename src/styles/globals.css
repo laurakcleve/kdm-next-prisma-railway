@@ -24,7 +24,8 @@
   --weapon-stat-primary: #65646a;
   --weapon-stat-secondary: #48484b;
   --weapon-stat-border: 1px solid #7e7d7d;
-  --special-rule: #4f585c;
+  --special-rule: #282730;
+  --special-rule-text: #908f99;
   --tooltip: #3a4245;
 
   --rt-opacity: 1;
@@ -102,6 +103,7 @@ main {
 
 .special-rule {
   background-color: var(--special-rule);
+  color: var(--special-rule-text);
   border-radius: 6px;
   font-family: var(--caps-font);
   font-size: 14px;
