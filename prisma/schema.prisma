@@ -29,6 +29,8 @@ model Gear {
   speed                Int?
   accuracy             Int?
   strength             Int?
+  cardText             String?
+  specialRules         GearHasSpecialRule[]
 }
 
 model GearKeyword {
@@ -90,4 +92,21 @@ model ResourceKeyword {
   name      String                    @unique
   resources Resource[]
   gear      GearUsesResourceKeyword[]
+}
+
+model SpecialRule {
+  id          Int                  @id @default(autoincrement())
+  name        String               @unique
+  description String
+  gear        GearHasSpecialRule[]
+}
+
+model GearHasSpecialRule {
+  gear   Gear        @relation(fields: [gearId], references: [id])
+  gearId Int
+  rule   SpecialRule @relation(fields: [ruleId], references: [id])
+  ruleId Int
+  value  Int?
+
+  @@id([gearId, ruleId])
 }

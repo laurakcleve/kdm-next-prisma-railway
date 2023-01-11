@@ -7,6 +7,15 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
       create: [
         {
           name: 'Bone Axe',
+          affinities: {
+            create: {
+              side: Side.LEFT,
+              color: Color.RED,
+            },
+          },
+          speed: 2,
+          accuracy: 6,
+          strength: 3,
           gearKeywords: {
             connect: [
               { name: 'weapon' },
@@ -15,11 +24,15 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               { name: 'bone' },
             ],
           },
-          affinities: {
-            create: {
-              side: Side.LEFT,
-              color: Color.RED,
-            },
+          specialRules: {
+            create: [
+              {
+                rule: { connect: { name: 'Frail' } },
+              },
+              {
+                rule: { connect: { name: 'Savage' } },
+              },
+            ],
           },
           resourceKeywords: {
             create: [
@@ -36,15 +49,9 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             ],
           },
-          speed: 2,
-          accuracy: 6,
-          strength: 3,
         },
         {
           name: 'Bone Club',
-          gearKeywords: {
-            connect: [{ name: 'weapon' }, { name: 'melee' }, { name: 'bone' }],
-          },
           affinities: {
             create: [
               {
@@ -57,6 +64,15 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             ],
           },
+          speed: 2,
+          accuracy: 6,
+          strength: 5,
+          gearKeywords: {
+            connect: [{ name: 'weapon' }, { name: 'melee' }, { name: 'bone' }],
+          },
+          specialRules: {
+            create: { rule: { connect: { name: 'Cumbersome' } } },
+          },
           resourceKeywords: {
             create: {
               resourceKeyword: {
@@ -65,20 +81,58 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               quantity: 3,
             },
           },
-          speed: 2,
-          accuracy: 6,
-          strength: 5,
         },
         {
           name: 'Skull Helmet',
-          gearKeywords: {
-            connect: [{ name: 'armor' }, { name: 'bone' }, { name: 'fragile' }],
-          },
           affinities: {
             create: {
               side: Side.BOTTOM,
               color: Color.RED,
             },
+          },
+          armorPoints: 3,
+          gearKeywords: {
+            connect: [{ name: 'armor' }, { name: 'bone' }, { name: 'fragile' }],
+          },
+          cardText:
+            'When you suffer a serious head injury, the Skull Helmet is destroyed.',
+          resources: {
+            create: {
+              resource: {
+                connect: { name: 'Skull' },
+              },
+            },
+          },
+        },
+        {
+          name: 'Bone Knives',
+          affinities: {
+            create: {
+              side: Side.LEFT,
+              color: Color.RED,
+            },
+          },
+          speed: 1,
+          accuracy: 7,
+          strength: 3,
+          gearKeywords: {
+            connect: [
+              { name: 'weapon' },
+              { name: 'ranged' },
+              { name: 'thrown' },
+              { name: 'bone' },
+            ],
+          },
+          specialRules: {
+            create: [
+              {
+                rule: { connect: { name: 'Frail' } },
+              },
+              {
+                rule: { connect: { name: 'Range' } },
+                value: 6,
+              },
+            ],
           },
           resources: {
             create: {
@@ -87,7 +141,6 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
-          armorPoints: 3,
         },
       ],
     },
@@ -98,9 +151,11 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
       create: [
         {
           name: 'Hide Boots',
+          armorPoints: 1,
           gearKeywords: {
             connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
           },
+          cardText: 'When you set out, gain +1 endurance.',
           resourceKeywords: {
             create: {
               resourceKeyword: {
@@ -108,19 +163,20 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
-          armorPoints: 1,
         },
         {
           name: 'Hide Drum',
-          gearKeywords: {
-            connect: [{ name: 'hide' }, { name: 'noisy' }, { name: 'item' }],
-          },
           affinities: {
             create: {
               side: Side.LEFT,
               color: Color.GREEN,
             },
           },
+          gearKeywords: {
+            connect: [{ name: 'hide' }, { name: 'noisy' }, { name: 'item' }],
+          },
+          cardText:
+            'On arrival, all heroes gain +1 madness. When you perform inspire, all non-deaf heroes are affected.',
           resourceKeywords: {
             create: [
               {
@@ -138,9 +194,6 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
         },
         {
           name: 'Hide Vest',
-          gearKeywords: {
-            connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
-          },
           affinities: {
             create: [
               {
@@ -153,6 +206,11 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             ],
           },
+          armorPoints: 1,
+          cardText: '+1 accuracy',
+          gearKeywords: {
+            connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
+          },
           resourceKeywords: {
             create: {
               resourceKeyword: {
@@ -160,7 +218,6 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
-          armorPoints: 1,
         },
       ],
     },
@@ -171,15 +228,17 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
       create: [
         {
           name: 'Cat Eye Crown',
-          gearKeywords: {
-            connect: [{ name: 'item' }, { name: 'jewelry' }],
-          },
           affinities: {
             create: {
               side: Side.LEFT,
               color: Color.BLUE,
             },
           },
+          gearKeywords: {
+            connect: [{ name: 'item' }, { name: 'jewelry' }],
+          },
+          cardText:
+            'Spend 1 action: Reveal the next 3 beast hit locations and put them back in any order.',
           resources: {
             create: {
               resource: {
@@ -192,6 +251,12 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
         },
         {
           name: 'Beast Grease',
+          affinities: {
+            create: {
+              side: Side.LEFT,
+              color: Color.GREEN,
+            },
+          },
           gearKeywords: {
             connect: [
               { name: 'item' },
@@ -199,12 +264,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               { name: 'stinky' },
             ],
           },
-          affinities: {
-            create: {
-              side: Side.LEFT,
-              color: Color.GREEN,
-            },
-          },
+          cardText: 'Gain +1 evasion.',
           resourceKeywords: {
             create: {
               resourceKeyword: {
@@ -215,13 +275,6 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
         },
         {
           name: 'Dried Astrantia',
-          gearKeywords: {
-            connect: [
-              { name: 'item' },
-              { name: 'herb' },
-              { name: 'consumable' },
-            ],
-          },
           affinities: {
             create: [
               {
@@ -234,6 +287,15 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             ],
           },
+          gearKeywords: {
+            connect: [
+              { name: 'item' },
+              { name: 'herb' },
+              { name: 'consumable' },
+            ],
+          },
+          cardText:
+            'When you depart, gain +2 survival. When you suffer a severe injury, ignore it and archive this card instead.',
           resources: {
             create: {
               resource: {
@@ -265,6 +327,8 @@ export const gearKeywordsData: Prisma.GearKeywordCreateManyInput[] = [
   { name: 'balm' },
   { name: 'stinky' },
   { name: 'jewelry' },
+  { name: 'ranged' },
+  { name: 'thrown' },
 ]
 
 export const resourceKeywordsData: Prisma.ResourceKeywordCreateManyInput[] = [
@@ -272,6 +336,29 @@ export const resourceKeywordsData: Prisma.ResourceKeywordCreateManyInput[] = [
   { name: 'bone' },
   { name: 'organ' },
   { name: 'herb' },
+]
+
+export const specialRulesData: Prisma.SpecialRuleCreateManyInput[] = [
+  {
+    name: 'Frail',
+    description:
+      'When you attempt to wound a super-dense hit location, this weapon breaks. Archive this card at the end of the attack.',
+  },
+  {
+    name: 'Savage',
+    description:
+      'Once per attack, if you critically wound, cause 1 additional wound. This effect does not apply to impervious hit locations.',
+  },
+  {
+    name: 'Cumbersome',
+    description:
+      'Spend a movement action as an additional cost to activate this weapon. Ignore Cumbersome if this weapon is activated indirectly (Pounce, Charge, etc).',
+  },
+  {
+    name: 'Range',
+    description:
+      'Heroes this many or fewer spaces away from a beast may attack with this weapon. Ranged weapons cannot be used if field of view to the beast is blocked (by terrain with the Obstacle rule).',
+  },
 ]
 
 export const resourcesData: Prisma.ResourceCreateInput[] = [

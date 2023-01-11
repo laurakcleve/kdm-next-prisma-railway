@@ -4,6 +4,7 @@ import {
   gearKeywordsData,
   resourceKeywordsData,
   resourcesData,
+  specialRulesData,
 } from './data'
 
 const prisma = new PrismaClient()
@@ -15,6 +16,11 @@ async function main() {
   await prisma.gearKeyword.deleteMany()
   await prisma.gear.deleteMany()
   await prisma.resourceKeyword.deleteMany()
+  await prisma.specialRule.deleteMany()
+
+  await prisma.specialRule.createMany({
+    data: specialRulesData,
+  })
 
   await prisma.resourceKeyword.createMany({
     data: resourceKeywordsData,
