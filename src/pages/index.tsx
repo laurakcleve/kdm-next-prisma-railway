@@ -30,8 +30,20 @@ function Home({ settlementLocations }) {
                 </div>
 
                 <div className="armor-weapon-details">
-                  {g.armorPoints && <ShieldIcon />}
-                  <div className="armor-points">{g.armorPoints}</div>
+                  {g.armorPoints && (
+                    <>
+                      <ShieldIcon />
+                      <div className="armor-points">{g.armorPoints}</div>
+                    </>
+                  )}
+
+                  {g.speed && (
+                    <div className="weapon-stats">
+                      <div className="speed">{g.speed}</div>
+                      <div className="accuracy">{g.accuracy}</div>
+                      <div className="strength">{g.strength}</div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="content">
@@ -48,12 +60,12 @@ function Home({ settlementLocations }) {
                 </div>
                 <ul className="resources">
                   {g.resources?.map((resource) => (
-                    <li key={resource.id}>
+                    <li key={`${resource.name}${resource.id}`}>
                       {resource.quantity}x {resource.resource.name}
                     </li>
                   ))}
                   {g.resourceKeywords?.map((keyword) => (
-                    <li key={keyword.id}>
+                    <li key={`${keyword.name}${keyword.id}`}>
                       {keyword.quantity}x {keyword.resourceKeyword.name}
                     </li>
                   ))}

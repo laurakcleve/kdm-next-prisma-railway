@@ -36,6 +36,9 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             ],
           },
+          speed: 2,
+          accuracy: 6,
+          strength: 3,
         },
         {
           name: 'Bone Club',
@@ -62,6 +65,9 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               quantity: 3,
             },
           },
+          speed: 2,
+          accuracy: 6,
+          strength: 5,
         },
         {
           name: 'Skull Helmet',

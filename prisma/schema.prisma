@@ -26,6 +26,9 @@ model Gear {
   resources            GearUsesResource[]
   resourceKeywords     GearUsesResourceKeyword[]
   armorPoints          Int?
+  speed                Int?
+  accuracy             Int?
+  strength             Int?
 }
 
 model GearKeyword {

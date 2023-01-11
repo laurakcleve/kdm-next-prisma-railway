@@ -9,7 +9,10 @@
 
   --resource-text: #d3b384;
   --border-color: #292832;
-  --shield-icon-color: #403e48;
+  --shield-icon: #403e48;
+  --weapon-stat-primary: #65646a;
+  --weapon-stat-secondary: #48484b;
+  --weapon-stat-border: 1px solid #7e7d7d;
 }
 
 html,
@@ -51,6 +54,7 @@ main {
 
 .gear-item {
   display: flex;
+  gap: 10px;
   margin-bottom: 25px;
 }
 .gear-item:not(:last-child) {
@@ -58,7 +62,7 @@ main {
 }
 
 .gear-item .affinity-wrapper {
-  flex: 1;
+  /* flex: 1; */
 }
 
 .gear-item .affinity-box {
@@ -70,10 +74,10 @@ main {
 }
 
 .gear-item .content {
-  flex: 5;
-  padding: 0 16px;
+  flex: 1;
+  /* padding: 0 16px; */
   font-size: 20px;
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
 }
 
 .gear-item p.keywords {
@@ -85,8 +89,9 @@ main {
 }
 
 .gear-item .resources {
-  flex: 2;
+  width: 80px;
   list-style-type: none;
+  padding: 0;
   font-size: 14px;
   color: var(--resource-text);
 }
@@ -96,20 +101,46 @@ main {
 }
 
 .armor-weapon-details {
-  width: 40px;
-  fill: var(--shield-icon-color);
-  position: relative;
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  width: 30px;
   text-align: center;
+  position: relative;
 }
 
 .armor-weapon-details svg {
-  width: 28px;
+  fill: var(--shield-icon);
 }
 
 .armor-points {
   position: absolute;
-  top: 8px;
-  left: 17px;
+  top: 10px;
+}
+
+.weapon-stats {
+  font-size: 14px;
+}
+.weapon-stats > div {
+  width: 18px;
+}
+
+.speed {
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
+  background-color: var(--weapon-stat-primary);
+  border-bottom: var(--weapon-stat-border);
+}
+
+.accuracy {
+  background-color: var(--weapon-stat-secondary);
+}
+
+.strength {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: var(--weapon-stat-border);
+  background-color: var(--weapon-stat-secondary);
 }
 
 .affinity-red {
