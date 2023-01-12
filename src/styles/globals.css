@@ -110,11 +110,12 @@ main {
   color: var(--special-rule-text);
   border-radius: 6px;
   font-family: var(--caps-font);
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 12px;
+  font-weight: 400;
   text-transform: uppercase;
   margin-left: 5px;
   padding: 2px 6px;
+  cursor: default;
 }
 
 .special-rule-tooltip {
@@ -142,9 +143,9 @@ main {
 }
 
 .gear-item .resources {
-  width: 80px;
+  width: 110px;
   list-style-type: none;
-  padding: 0;
+  padding: 0 0 0 15px;
   margin: 0;
   font-size: 16px;
   color: var(--resource-text);
