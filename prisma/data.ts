@@ -1,4 +1,4 @@
-import { Side, Color, Prisma } from '@prisma/client'
+import { Side, Color, HitLocation, Prisma } from '@prisma/client'
 
 export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
   {
@@ -91,6 +91,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
             },
           },
           armorPoints: 3,
+          hitLocation: HitLocation.HEAD,
           gearKeywords: {
             connect: [{ name: 'armor' }, { name: 'bone' }, { name: 'fragile' }],
           },
@@ -152,6 +153,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
         {
           name: 'Hide Boots',
           armorPoints: 1,
+          hitLocation: HitLocation.LEGS,
           gearKeywords: {
             connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],
           },
@@ -207,6 +209,7 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
             ],
           },
           armorPoints: 1,
+          hitLocation: HitLocation.BODY,
           cardText: '+1 accuracy',
           gearKeywords: {
             connect: [{ name: 'armor' }, { name: 'set' }, { name: 'hide' }],

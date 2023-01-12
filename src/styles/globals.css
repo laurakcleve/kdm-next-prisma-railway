@@ -100,6 +100,10 @@ main {
   flex: 1
 }
 
+.secondary-identifiers > div {
+  display: inline-block;
+}
+
 .special-rule {
   background-color: var(--special-rule);
   border-radius: 6px;
@@ -154,7 +158,6 @@ main {
   align-items: flex-start;
   width: 30px;
   text-align: center;
-  position: relative;
   font-size: 16px;
   margin: 0 8px;
 }
@@ -163,9 +166,23 @@ main {
   fill: var(--shield-icon);
 }
 
+.armor-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
 .armor-points {
   position: absolute;
   top: 8px;
+  left: 11px;
+}
+
+.hlIcon {
+  width: 20px;
+  margin-top: 20px;
 }
 
 .weapon-stats > div {

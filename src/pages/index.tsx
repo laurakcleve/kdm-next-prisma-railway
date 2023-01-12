@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import Head from 'next/head'
 import { Tooltip } from 'react-tooltip'
 import ShieldIcon from '../components/ShieldIcon'
+import HitLocationIcon from '../components/HitLocationIcon'
 
 function Home({ settlementLocations }) {
   return (
@@ -30,10 +31,17 @@ function Home({ settlementLocations }) {
 
                 <div className="stats">
                   {g.armorPoints && (
-                    <>
+                    <div className="armor-stats">
                       <ShieldIcon />
                       <div className="armor-points">{g.armorPoints}</div>
-                    </>
+                      {g.hitLocation && (
+                        <div className="hlIcon">
+                          <HitLocationIcon
+                            location={g.hitLocation}
+                          ></HitLocationIcon>
+                        </div>
+                      )}
+                    </div>
                   )}
 
                   {g.speed && (
@@ -62,9 +70,8 @@ function Home({ settlementLocations }) {
 
                     <div className="secondary-identifiers">
                       {g.specialRules?.map((r) => (
-                        <>
+                        <div key={r.rule.id}>
                           <span
-                            key={r.rule.id}
                             id={`${g.id}${r.rule.id}`}
                             className="special-rule"
                             data-tooltip-content={r.rule.description}
@@ -76,7 +83,7 @@ function Home({ settlementLocations }) {
                             anchorId={`${g.id}${r.rule.id}`}
                             className="special-rule-tooltip"
                           />
-                        </>
+                        </div>
                       ))}
                     </div>
                   </div>
