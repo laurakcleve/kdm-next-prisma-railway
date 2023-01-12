@@ -31,6 +31,7 @@ model Gear {
   strength             Int?
   cardText             String?
   specialRules         GearHasSpecialRule[]
+  hitLocation          HitLocation?
 }
 
 model GearKeyword {
@@ -58,6 +59,14 @@ enum Color {
   RED
   GREEN
   BLUE
+}
+
+enum HitLocation {
+  HEAD
+  ARMS
+  BODY
+  WAIST
+  LEGS
 }
 
 model GearUsesResource {
@@ -102,9 +111,9 @@ model SpecialRule {
 }
 
 model GearHasSpecialRule {
-  gear   Gear        @relation(fields: [gearId], references: [id])
+  gear   Gear        @relation(fields: [gearId], references: [id], onDelete: Cascade)
   gearId Int
-  rule   SpecialRule @relation(fields: [ruleId], references: [id])
+  rule   SpecialRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
   ruleId Int
   value  Int?
 
