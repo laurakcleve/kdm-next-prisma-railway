@@ -1,11 +1,49 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 import Head from 'next/head'
 import { Tooltip } from 'react-tooltip'
 import ShieldIcon from '../components/ShieldIcon'
 import HitLocationIcon from '../components/HitLocationIcon'
 import AffinityBonusRequirement from '../components/AffinityBonusRequirement'
 
-function Home({ settlementLocations }) {
+const locationWithGear = Prisma.validator<Prisma.SettlementLocationArgs>()({
+  include: {
+    gear: {
+      include: {
+        gearKeywords: true,
+        affinities: true,
+        resources: {
+          include: {
+            resource: true,
+          },
+        },
+        resourceKeywords: {
+          include: {
+            resourceKeyword: true,
+          },
+        },
+        specialRules: {
+          include: {
+            rule: true,
+          },
+        },
+        affinityBonus: {
+          include: {
+            requirements: true,
+          },
+        },
+      },
+    },
+  },
+})
+type LocationWithGear = Prisma.SettlementLocationGetPayload<
+  typeof locationWithGear
+>
+
+type HomeProps = {
+  settlementLocations: LocationWithGear[]
+}
+
+function Home({ settlementLocations }: HomeProps) {
   return (
     <>
       <Head>
