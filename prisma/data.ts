@@ -221,6 +221,23 @@ export const settlementLocationsData: Prisma.SettlementLocationCreateInput[] = [
               },
             },
           },
+          affinityBonus: {
+            create: {
+              requirements: {
+                create: [
+                  {
+                    color: Color.BLUE,
+                    isPuzzlePiece: true,
+                  },
+                  {
+                    color: Color.RED,
+                    isPuzzlePiece: true,
+                  },
+                ],
+              },
+              description: '+1 evasion',
+            },
+          },
         },
       ],
     },

@@ -32,6 +32,7 @@ model Gear {
   cardText             String?
   specialRules         GearHasSpecialRule[]
   hitLocation          HitLocation?
+  affinityBonus        AffinityBonus?
 }
 
 model GearKeyword {
@@ -118,4 +119,21 @@ model GearHasSpecialRule {
   value  Int?
 
   @@id([gearId, ruleId])
+}
+
+model AffinityBonus {
+  id           Int                        @id @default(autoincrement())
+  gear         Gear                       @relation(fields: [gearId], references: [id])
+  gearId       Int                        @unique
+  requirements AffinityBonusRequirement[]
+  description  String
+}
+
+model AffinityBonusRequirement {
+  id              Int           @id @default(autoincrement())
+  affinityBonus   AffinityBonus @relation(fields: [affinityBonusId], references: [id])
+  affinityBonusId Int
+  color           Color
+  number          Int           @default(1)
+  isPuzzlePiece   Boolean       @default(false)
 }

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Tooltip } from 'react-tooltip'
 import ShieldIcon from '../components/ShieldIcon'
 import HitLocationIcon from '../components/HitLocationIcon'
+import AffinityBonusRequirement from '../components/AffinityBonusRequirement'
 
 function Home({ settlementLocations }) {
   return (
@@ -23,8 +24,7 @@ function Home({ settlementLocations }) {
                   {g.affinities.map((affinity) => (
                     <div
                       key={`${affinity.side}${affinity.color}`}
-                      className={`affinity-${affinity.side.toLowerCase()} 
-                                    affinity-${affinity.color.toLowerCase()}`}
+                      className={`affinity-${affinity.side.toLowerCase()} ${affinity.color.toLowerCase()}`}
                     />
                   ))}
                 </div>
@@ -89,6 +89,23 @@ function Home({ settlementLocations }) {
                   </div>
 
                   {g.cardText && <div className="card-text">{g.cardText}</div>}
+
+                  {g.affinityBonus && (
+                    <div className="affinity-bonus">
+                      <div className="requirements">
+                        {g.affinityBonus.requirements.map((r) => (
+                          <AffinityBonusRequirement
+                            key={r.id}
+                            color={r.color}
+                            number={r.number}
+                          ></AffinityBonusRequirement>
+                        ))}
+                      </div>
+                      <div className="description">
+                        {g.affinityBonus.description}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <ul className="resources">
@@ -133,6 +150,11 @@ export async function getStaticProps() {
           specialRules: {
             include: {
               rule: true,
+            },
+          },
+          affinityBonus: {
+            include: {
+              requirements: true,
             },
           },
         },

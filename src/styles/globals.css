@@ -17,9 +17,12 @@
   --affinity-height: 8px;
   --affinity-width: 14px;
 
+  --bg-color: #1b1a20;
   --resource-text: #dfc2ab;
   --header-color: #99afad;
   --border-color: #292832;
+  --affinity-border-color: #424150;
+  --affinity-bonus-bg: #222128;
   --shield-icon: #403e48;
   --weapon-stat-primary: #65646a;
   --weapon-stat-secondary: #48484b;
@@ -35,7 +38,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #1b1a20;
+  background-color: var(--bg-color); 
   color: #ffffff;
   font-family: var(--p-font)}
 
@@ -211,15 +214,15 @@ main {
   padding-bottom: 2px;
 }
 
-.affinity-red {
+.red {
   background-color: var(--red);
 }
 
-.affinity-blue {
+.blue {
   background-color: var(--blue);
 }
 
-.affinity-green {
+.green {
   background-color: var(--green);
 }
 
@@ -258,4 +261,33 @@ main {
   width: var(--affinity-width);
   height: var(--affinity-height);
   background-color: var(--red);
+}
+
+.affinity-bonus {
+  display: flex;
+  border: 1px solid var(--affinity-border-color);
+  border-radius: 8px;
+  margin-top: 10px;
+  max-height: 45px;
+}
+
+.requirements {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  padding: 10px 14px;
+}
+
+.affinity-bonus-requirement {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.affinity-bonus .description {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--affinity-bonus-bg);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
